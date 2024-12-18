@@ -1,0 +1,52 @@
+import random
+
+appliances = [
+    {"name": "Lights", "status": "off"},
+    {"name": "TV", "status": "off"},
+    {"name": "Outlets", "status": "off"},
+    {"name": "Toaster", "status": "off"},
+    {"name": "Space Heater", "status": "off"}
+]
+
+def randomize_appliances(appliances):
+    for appliance in appliances:
+        appliance["status"] = random.choice(["on", "off"])
+
+def check_appliances(appliances):
+    turned_on = [appliance["name"] for appliance in appliances if appliance["status"] == "on"]
+    return turned_on
+
+def turn_off_all(appliances):
+    for appliance in appliances:
+        appliance["status"] = "off"
+
+def view_profile():
+    print("Profile: User123, Home Automation Enthusiast")
+
+def main_menu():
+    print("Menu:")
+    print("1. View home power options")
+    print("2. Turn off all power")
+    print("3. View profile")
+
+while True:
+    randomize_appliances(appliances)  
+    main_menu()
+    choice = input("What would you like to do?: ")
+    
+    if choice == "1":
+        turned_on_appliances = check_appliances(appliances)
+        print("The following appliances are currently turned on:", turned_on_appliances)
+    elif choice == "2":
+        turn_off_all(appliances)
+        print("All appliances have been turned off.")
+    elif choice == "3":
+        view_profile()
+    else:
+        print("Invalid choice. Please select a valid option.")
+    
+    more = input("Do you want to perform another action? (yes/no): ")
+    if more.lower() != 'yes':
+        break
+
+    
